@@ -13,6 +13,18 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 
+  void _presentDatePicker() {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    final lastDate = now;
+    showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -33,14 +45,34 @@ class _NewExpenseState extends State<NewExpense> {
               label: Text('Title'),
             ),
           ),
-          TextField(
-            controller: _amountController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              prefixText: '\$ ',
-              label: Text('Amount'),
+          Row(children: [
+            Expanded(
+              child: TextField(
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  prefixText: '\$ ',
+                  label: Text('Amount'),
+                ),
+              ),
             ),
-          ),
+            const SizedBox(
+              width: 16,
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('Selected Date'),
+                  IconButton(
+                    onPressed: _presentDatePicker,
+                    icon: const Icon(Icons.calendar_month),
+                  )
+                ],
+              ),
+            )
+          ]),
           Row(
             children: [
               ElevatedButton(
@@ -51,7 +83,9 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Save Expense'),
               ),
               TextButton(
-                onPressed: () {}, //todo: add functionality to close modal
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 child: const Text('Cancel'),
               )
             ],
