@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:expense_tracker/widgets/expenses.dart';
 
@@ -12,6 +13,12 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
+  // To lock orientation, uncomments the next 4 lines of code and place the
+  // runApp function into the {} of the .then function
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((fn) {});
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
