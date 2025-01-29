@@ -13,7 +13,7 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
-  // To lock orientation, uncomments the next 4 lines of code and place the
+  // To lock orientation as horizontal, uncomments the next 4 lines of code and place the
   // runApp function into the {} of the .then function
   // WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations([
